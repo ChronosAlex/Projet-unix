@@ -1,0 +1,427 @@
+[
+    {
+        "id": "8bec72e79bfca108",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "e1a47d2e86641dda",
+        "type": "rpi-sensehat in",
+        "z": "8bec72e79bfca108",
+        "name": "",
+        "motion": false,
+        "env": true,
+        "stick": false,
+        "x": 110,
+        "y": 140,
+        "wires": [
+            [
+                "aec3ef614f25cfea",
+                "6c9195970976a87a"
+            ]
+        ]
+    },
+    {
+        "id": "aec3ef614f25cfea",
+        "type": "switch",
+        "z": "8bec72e79bfca108",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 300,
+        "y": 140,
+        "wires": [
+            [
+                "89b02f6c455e0f34",
+                "156c0cf7d2b1aa28",
+                "a448d39ba0f52bca"
+            ]
+        ]
+    },
+    {
+        "id": "89b02f6c455e0f34",
+        "type": "change",
+        "z": "8bec72e79bfca108",
+        "name": "temp",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.temperature",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 460,
+        "y": 100,
+        "wires": [
+            [
+                "af50d545d3cee425"
+            ]
+        ]
+    },
+    {
+        "id": "156c0cf7d2b1aa28",
+        "type": "change",
+        "z": "8bec72e79bfca108",
+        "name": "hum",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.humidity",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 480,
+        "y": 200,
+        "wires": [
+            [
+                "dd6f7ea8f0cf22a9"
+            ]
+        ]
+    },
+    {
+        "id": "af50d545d3cee425",
+        "type": "smooth",
+        "z": "8bec72e79bfca108",
+        "name": "",
+        "property": "payload",
+        "action": "mean",
+        "count": "10",
+        "round": "2",
+        "mult": "single",
+        "reduce": false,
+        "x": 680,
+        "y": 100,
+        "wires": [
+            [
+                "de3c52bb285890ba",
+                "89c17b5a7ca23d2e"
+            ]
+        ]
+    },
+    {
+        "id": "dd6f7ea8f0cf22a9",
+        "type": "smooth",
+        "z": "8bec72e79bfca108",
+        "name": "",
+        "property": "payload",
+        "action": "mean",
+        "count": "10",
+        "round": "2",
+        "mult": "single",
+        "reduce": false,
+        "x": 710,
+        "y": 200,
+        "wires": [
+            [
+                "076a5e4c1b7730a8"
+            ]
+        ]
+    },
+    {
+        "id": "de3c52bb285890ba",
+        "type": "ui_gauge",
+        "z": "8bec72e79bfca108",
+        "name": "Thermometre",
+        "group": "f0b7bfe923cbaacd",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "thermometre",
+        "label": "units",
+        "format": "{{value}}",
+        "min": "-15",
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 870,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "076a5e4c1b7730a8",
+        "type": "ui_gauge",
+        "z": "8bec72e79bfca108",
+        "name": "Humidite",
+        "group": "f0b7bfe923cbaacd",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "humidite",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 870,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "89c17b5a7ca23d2e",
+        "type": "ui_chart",
+        "z": "8bec72e79bfca108",
+        "name": "Temperature Graph",
+        "group": "f0b7bfe923cbaacd",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "temperature graph",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 880,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8c17a11c07b76833",
+        "type": "debug",
+        "z": "8bec72e79bfca108",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "a448d39ba0f52bca",
+        "type": "change",
+        "z": "8bec72e79bfca108",
+        "name": "atm",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.pressure",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 460,
+        "y": 320,
+        "wires": [
+            [
+                "84085da621780235"
+            ]
+        ]
+    },
+    {
+        "id": "84085da621780235",
+        "type": "smooth",
+        "z": "8bec72e79bfca108",
+        "name": "",
+        "property": "payload",
+        "action": "mean",
+        "count": "10",
+        "round": "0",
+        "mult": "single",
+        "reduce": false,
+        "x": 710,
+        "y": 340,
+        "wires": [
+            [
+                "74acf720e4131d44"
+            ]
+        ]
+    },
+    {
+        "id": "74acf720e4131d44",
+        "type": "ui_gauge",
+        "z": "8bec72e79bfca108",
+        "name": "barometre",
+        "group": "f0b7bfe923cbaacd",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Barometre",
+        "label": "units",
+        "format": "{{value}}",
+        "min": "700",
+        "max": "1300",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 920,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "6c9195970976a87a",
+        "type": "mqtt out",
+        "z": "8bec72e79bfca108",
+        "name": "",
+        "topic": "Projet_4_donnees",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "7614a1d34134f1ec",
+        "x": 550,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "d986c69e7bb9667f",
+        "type": "mqtt in",
+        "z": "8bec72e79bfca108",
+        "name": "",
+        "topic": "Projet_4_message",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "7614a1d34134f1ec",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 350,
+        "y": 620,
+        "wires": [
+            [
+                "8c17a11c07b76833",
+                "a77b3f85be22eb07"
+            ]
+        ]
+    },
+    {
+        "id": "a77b3f85be22eb07",
+        "type": "rpi-sensehat out",
+        "z": "8bec72e79bfca108",
+        "name": "",
+        "x": 920,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "f0b7bfe923cbaacd",
+        "type": "ui_group",
+        "name": "Projet_4",
+        "tab": "cef40c2a534fd3fa",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "7614a1d34134f1ec",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.61.157",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "cef40c2a534fd3fa",
+        "type": "ui_tab",
+        "name": "Projet_4",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
