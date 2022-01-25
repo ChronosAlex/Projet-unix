@@ -7,4 +7,4 @@ node_red_sense_hat
 <br /> Problème rencontré installation de sense_hat. Celui c'est installé mais et n'avait pas créer le fichier node-red-node-pi-sense-hat. 
 <br /> J'ai donc voulu le désinstaler avec les commandes mais cela ne fonctionnait pas puis aprés plusieurs relancement de la raspberry j'ai pu 
 <br /> désinstaller le sense_hat pour pouvoir le réinstaller correctement.
-
+<br />Nous avons suivi les differents conseils sur le discord et sur la fiche du projet 4 pour le réalisé.
