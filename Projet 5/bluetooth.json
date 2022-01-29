@@ -1,0 +1,106 @@
+[
+    {
+        "id": "74e83b8221643994",
+        "type": "tab",
+        "label": "Flow 3",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "70ccb8ea8de69dd3",
+        "type": "debug",
+        "z": "74e83b8221643994",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 370,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "ca0c9d93d4d9df18",
+        "type": "Generic BLE in",
+        "z": "74e83b8221643994",
+        "name": "battery",
+        "genericBle": "2ef11be1bce948fb",
+        "useString": false,
+        "notification": true,
+        "x": 250,
+        "y": 180,
+        "wires": [
+            [
+                "70ccb8ea8de69dd3",
+                "d73fa2534e34738a"
+            ]
+        ]
+    },
+    {
+        "id": "275314ee389e35dc",
+        "type": "inject",
+        "z": "74e83b8221643994",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"f000aa0204514000b000000000000000\":\"ca\"}",
+        "payloadType": "json",
+        "x": 80,
+        "y": 120,
+        "wires": [
+            [
+                "ca0c9d93d4d9df18"
+            ]
+        ]
+    },
+    {
+        "id": "d73fa2534e34738a",
+        "type": "Generic BLE out",
+        "z": "74e83b8221643994",
+        "name": "",
+        "genericBle": "2ef11be1bce948fb",
+        "x": 380,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "2ef11be1bce948fb",
+        "type": "Generic BLE",
+        "localName": "Battery",
+        "address": "77:7a:36:7e:0c:d0",
+        "uuid": "777a367e0cd0",
+        "characteristics": [
+            {
+                "uuid": "2a05",
+                "name": "Service Changed",
+                "type": "org.bluetooth.characteristic.gatt.service_changed",
+                "notifiable": false,
+                "readable": false,
+                "writable": false,
+                "writeWithoutResponse": false
+            },
+            {
+                "uuid": "2a19",
+                "name": "Battery Level",
+                "type": "org.bluetooth.characteristic.battery_level",
+                "notifiable": true,
+                "readable": true,
+                "writable": true,
+                "writeWithoutResponse": false
+            }
+        ]
+    }
+]
